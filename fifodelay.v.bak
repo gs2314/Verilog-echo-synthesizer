@@ -1,0 +1,15 @@
+module fifodelay (source, echoed, clk);
+
+input [9:0] source;
+input clk;
+output [9:0] echoed;
+reg [9:0] b4beta;
+
+
+fifo fif(source[9:0], clk, b4beta[9:0], full);
+
+always @(full == 1)
+	assign echoed = b4beta >>> 2;
+
+
+endmodule
